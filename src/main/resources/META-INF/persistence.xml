@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Detta är en XML-fil och den använder UTF-8 teckenkodning. "standalone='yes'" betyder att filen inte har externa beroenden. -->
+
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <!-- Här definieras vilket format och version filen använder (Jakarta Persistence API version 3.0). -->
+
+    <persistence-unit name="default" transaction-type="JTA">
+        <!-- Detta definierar en "persistence unit", som är inställningar för att jobba med databasen.
+             "name" är namnet på denna inställning (här kallas den "default").
+             "transaction-type" betyder att transaktioner hanteras av applikationsservern. -->
+
+        <jta-data-source>jdbc/__default</jta-data-source>
+        <!-- Här definieras den datakälla som ska användas för att ansluta till databasen.
+             "jdbc/__default" betyder att en datakälla som kallas "__default" används. -->
+
+        <properties>
+            <!-- Här kan man lägga till inställningar för hur databasen ska hanteras. -->
+
+            <!-- Skapa tabeller i databasen om de inte finns redan -->
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <!-- Detta säger till JPA att skapa databastabeller om de saknas. -->
+
+            <!-- Bestämmer var tabellinformationen ska sparas (här är det i själva databasen). -->
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+
+            <!-- Skapa databasschema (tabeller och annat) vid applikationens start -->
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <!-- Detta gör att JPA skapar eller uppdaterar databasscheman när applikationen startas. -->
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- Start på projektfilen för Maven. -->
+    <modelVersion>4.0.0</modelVersion>
+    <!-- Versionen av POM-formatet som används. 4.0.0 är standard och den senaste. -->
+
+    <groupId>se.mo</groupId>
+    <!-- Identifierare för projektets paketnamn. -->
+
+    <artifactId>rest-database</artifactId>
+    <!-- Namnet på projektet eller modulen. Det används vid paketering för att identifiera det. -->
+
+    <version>1.0-SNAPSHOT</version>
+    <!-- Versionen av projektet. "SNAPSHOT" betyder att detta är en utvecklingsversion. -->
+
+    <name>rest-database</name>
+    <!-- Namnet på projektet som används av Maven för visning. -->
+
+    <packaging>war</packaging>
+    <!-- Byggtypen för projektet. "war" betyder att det är en webbapplikation som kan deployas till en server. -->
+
+    <properties>
+        <!-- Definierar viktiga egenskaper för projektet -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Ange teckenkodning för projektet. -->
+
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <!-- Dessa anger att projektet ska kompileras med Java version 11. -->
+
+        <junit.version>5.10.2</junit.version>
+        <!-- Versionen av JUnit som ska användas för tester. -->
+    </properties>
+
+    <dependencies>
+        <!-- Här listas alla externa bibliotek och verktyg som projektet behöver för att fungera. -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>9.1.0</version>
+            <scope>provided</scope>
+            <!-- Jakarta EE-webbiblioteket för att använda standarder som JPA, REST, CDI osv.
+                 Scope "provided" betyder att det redan finns på applikationsservern, så det inkluderas inte i WAR-filen. -->
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+            <!-- JUnit-biblioteket för att skriva tester. Scope "test" betyder att det bara används under testkörning. -->
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+            <!-- JUnit-motorn som kör testerna. Även här är "test"-scope angivet. -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Konfiguration för hur projektet ska byggas -->
+        <plugins>
+            <!-- Här definierar vi vilka Maven-plugins som ska användas -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <!-- Maven-plugin för att bygga en WAR-fil från projektet -->
+            </plugin>
+        </plugins>
+    </build>
+</project>
